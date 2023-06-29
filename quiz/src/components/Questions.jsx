@@ -1,18 +1,16 @@
 import { questions } from './Fragen';
+// import { Answers } from './Answers';
 // import App from "../../App";
 
 const RenderQuestions = () => {
-  // const question = questions.question;
-  // console.log({ question });
-
-  console.log(questions);
+  console.log('Hello');
   return questions.map((question) => {
     console.log(question);
 
     return (
       <form key={questions.question}>
-        <p>Question: {question.question}</p>
-        <answer />
+        <h3>Question: {question.question}</h3>
+        {/* <Answers /> */}
       </form>
     );
   });
