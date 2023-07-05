@@ -66,3 +66,5 @@ export const questions = [
     userAnswer: '',
   },
 ];
+
+export default questions;

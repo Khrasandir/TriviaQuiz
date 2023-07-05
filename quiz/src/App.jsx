@@ -10,13 +10,9 @@ function App() {
     <>
       <header>
         <h1>Max super interesting Quiz!</h1>
-        <p>He totally did it all by himself!</p>
       </header>
       <div className="quizzy">
-        <form action="#">
-          <RenderQuestions />
-          Hello Quiz
-        </form>
+        <RenderQuestions />
       </div>
     </>
   );
