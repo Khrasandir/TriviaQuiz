@@ -1,14 +1,24 @@
 #root {
-  margin: 0 auto;
-  height: 100vh;
-  padding: 2rem;
-  text-align: center;
+  box-sizing: border-box;
+}
+
+body {
   background: rgb(101, 137, 180);
   background: radial-gradient(
     circle,
     rgba(101, 137, 180, 1) 0%,
     rgba(196, 223, 255, 1) 100%
   );
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  text-align: center;
+  color: white;
+  padding: 2rem;
 }
 
 h2 {
@@ -18,76 +28,4 @@ h2 {
   text-shadow: 2px 2px 5px 0px #000000;
   margin: 2rem;
   margin-top: 4rem;
-}
-
-.answers {
-  margin: auto;
-  width: 50%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: nowrap;
-  font-size: 1rem;
-  background-color: rgba(249, 144, 88, 0.786);
-  text-shadow: 0.2px 0.2px 5px #000000;
-  color: white;
-  padding: 2rem;
-  margin: 3rem;
-  width: 6rem;
-  height: 1rem;
-  border-radius: 20px;
-  flex-wrap: nowrap;
-  box-shadow: 5px 5px 20px 0px #000000;
-}
-
-span:hover {
-  cursor: pointer;
-  background-color: rgb(253, 145, 86);
-}
-
-.selected {
-  background-color: aqua;
-  text-shadow: 1px 0.2px 0.2px #000000;
-}
-
-span:focus {
-  background-color: yellow;
-}
-span:active {
-  background-color: green;
-  box-sizing: 2.1rem;
-}
-
-button {
-  margin: 3rem;
-  margin-bottom: 5rem;
-  padding: 1.25rem;
-  border-radius: 20px;
-  background-color: rgba(0, 255, 255, 0.718);
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: aqua;
-}
-button:active {
-  background-color: rgb(16, 114, 114);
-  color: white;
-}
-
-.correct {
-  color: red;
-  background-color: white;
-  border: red 2px solid;
-}
-
-.wrong {
-  color: white;
-  background-color: green;
 }

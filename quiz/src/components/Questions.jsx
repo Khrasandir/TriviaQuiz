@@ -1,20 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import './questions.css';
 
-const RenderQuestions = () => {
-  const [trivia, setTrivia] = useState([]);
-  const url = 'https://wd40-trivia.onrender.com/api/questions';
+const RenderQuestions = ({ trivia }) => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [selectedAnswersArr, setSelectedAnswersArr] = useState([]);
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showResults, setShowResults] = useState(false);
-
-  useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => setTrivia(data))
-      .catch((error) => console.error(error));
-  }, []);
 
   function selectHandler(questionIndex, answerIndex) {
     setSelectedAnswers((prevSelectedAnswers) => {
@@ -51,23 +43,25 @@ const RenderQuestions = () => {
   return (
     <>
       {showResults ? (
-        <div>
-          <h2>Results:</h2>
-          <h2>Score: {score}</h2>
+        <div className="resultCont">
+          <h2>
+            Results: {score < 4 ? 'Wow.. maybe try reading a book' : 'Not bad'}
+          </h2>
+          <h2>Score: {score}/6</h2>
           <div>
             {trivia.map((question, questionIndex) => (
               <div key={questionIndex}>
                 <h3>{question.question}</h3>
-                <p>
+                <p className="singResult">
                   Your Answer: {selectedAnswersArr[questionIndex]}
                   {selectedAnswersArr[questionIndex] ===
                   question.correctAnswer ? (
-                    <span className="correct"> (Correct)</span>
+                    <div className="correct"> Correct</div>
                   ) : (
-                    <span className="wrong">
+                    <div className="wrong">
                       {' '}
-                      (Wrong, Correct Answer: {question.correctAnswer})
-                    </span>
+                      Wrong you noob, Correct Answer: {question.correctAnswer}
+                    </div>
                   )}
                 </p>
               </div>
@@ -75,24 +69,35 @@ const RenderQuestions = () => {
           </div>
         </div>
       ) : (
-        <div>
-          <h2>{trivia[currentQuestionIndex].question}</h2>
-          <div className="answers">
-            {trivia[currentQuestionIndex].answers.map((answer, answerIndex) => (
-              <span
-                className={
-                  selectedAnswers[currentQuestionIndex] === answerIndex
-                    ? 'selected'
-                    : ''
-                }
-                onClick={() => selectHandler(currentQuestionIndex, answerIndex)}
-                key={answerIndex}
-              >
-                {answer}
-              </span>
-            ))}
-          </div>
-          <button onClick={answerArr}>Submit Answer</button>
+        <div className="answers">
+          {trivia.length && (
+            <div key={trivia[currentQuestionIndex].id}>
+              <h2>{trivia[currentQuestionIndex].question}</h2>
+              <div className="something">
+                {trivia[currentQuestionIndex].answers.map(
+                  (answer, answerIndex) => (
+                    <div
+                      className={`answerContainer 
+                        ${
+                          selectedAnswers[currentQuestionIndex] === answerIndex
+                            ? 'selected'
+                            : ''
+                        }`}
+                      onClick={() =>
+                        selectHandler(currentQuestionIndex, answerIndex)
+                      }
+                      key={answerIndex}
+                    >
+                      {answer}
+                    </div>
+                  )
+                )}
+              </div>
+              <div className="buttDiv">
+                <button onClick={answerArr}>Submit Answer</button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </>
